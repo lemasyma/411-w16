@@ -23,12 +23,11 @@ for i in {1..3}
 do
     for j in {1..5}
     do
-        BEGIN=`date +%s%N`
         FILENAME="$DIRECTORY$FILE$j${ARRAY[i]}B.txt"
-        cp $FILENAME $COPY${FILENAME#"$DIRECTORY"}
-        END=`date +%s%N`
         PRINT=`stat --printf="%s" $FILENAME`
-        PRINT+=' '$(((END-BEGIN)/1000000))'.'$(((END-BEGIN)%1000000))
+        PRINT+=" "
+        PRINT+=`(time cp $FILENAME $COPY${FILENAME#"$DIRECTORY"}) 2>&1 >/dev/null | grep real | awk '{print $2}' | awk 'BEGIN {FS="[m,s]";}{ print (($1*60)+$2)"."$3}'`
         echo $PRINT >> $SAVE
     done
 done
+
