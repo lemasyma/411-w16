@@ -28,6 +28,7 @@ do
         PRINT+=" "
         PRINT+=`(time cp $FILENAME $COPY${FILENAME#"$DIRECTORY"}) 2>&1 >/dev/null | grep real | awk '{print $2}' | awk 'BEGIN {FS="[m,s]";}{ print (($1*60)+$2)"."$3}'`
         echo $PRINT >> $SAVE
+        echo "Copied file $FILENAME"
     done
 done
 
