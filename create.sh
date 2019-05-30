@@ -16,5 +16,6 @@ do
     do
         FILENAME="$DIRECTORY$FILE$j${ARRAY[i]}B.txt"
         head -c $j${ARRAY[i]}B /dev/urandom > $FILENAME
+        echo "Created file $FILENAME"
     done
 done

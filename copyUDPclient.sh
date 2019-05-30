@@ -5,7 +5,7 @@ ARRAY=('' 'K' 'M' 'G')
 DIRECTORY="original/*"
 COUNT=0
 
-SAVE="TCP.txt"
+SAVE="UDP.txt"
 FILE="test"
 
 if [ -f $SAVE ]
@@ -29,7 +29,7 @@ do
         FILENAME="${DIRECTORY#"*"}$FILE$k${ARRAY[j]}B.txt"
         PRINT=`stat --printf="%s" $FILENAME`
         PRINT+=" "
-        PRINT+=`(time nc -q 0 localhost 1234 < $FILENAME) 2>&1>/dev/null | grep real | awk '{print $2}' | awk 'BEGIN {FS="[m,s]";}{ print (($1*60)+$2)"."$3}'`
+        PRINT+=`(time nc -u -q 0 localhost 1234 < $FILENAME) 2>&1>/dev/null | grep real | awk '{print $2}' | awk 'BEGIN {FS="[m,s]";}{ print (($1*60)+$2)"."$3}'`
         echo $PRINT >> $SAVE
         echo "Copied file $i/$COUNT"
         i=$((i+1))

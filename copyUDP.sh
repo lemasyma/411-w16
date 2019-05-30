@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COPY="copyTCP/"
+COPY="copyUDP/"
 
 FILE="copy"
 
@@ -16,7 +16,7 @@ START=1
 for((i=$START;i<=$COUNT;i++))
 do
     FILENAME="$COPY$FILE$i.txt"
-    nc -l -p 1234 > $FILENAME
+    nc -u -l -p 1234 > $FILENAME
     echo "Recieved file $i out of $COUNT"
 done
 echo "Server done"
