@@ -29,6 +29,9 @@ The following specifications are needed in order to execute the script:
 ## Launch the script
 Only the Python file needs to be executed, the bash file will follow automatically
 The user can launch the script with the following command:
-'''
+```
 $ python3 time.py
-'''
+```
+The program will ask for a user input to know how to transfer the files and then automatically launch the bash scripts.
+
+**Warning**: This program needs approximatively 15Go of storage (which will be freed after exection), make sure to have enough storage beforehand.
