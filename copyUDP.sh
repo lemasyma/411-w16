@@ -10,13 +10,13 @@ then
 fi
 mkdir $COPY
 
-COUNT=$(nc -l -p 1234)
+COUNT=$(nc -4 -lvu 1234)
 START=1
 
 for((i=$START;i<=$COUNT;i++))
 do
     FILENAME="$COPY$FILE$i.txt"
-    nc -u -l -p 1234 > $FILENAME
-    echo "Recieved file $i out of $COUNT"
+    netcat -4 -lvu 1234 > $FILENAME
+    echo "Received file $i out of $COUNT"
 done
 echo "Server done"
